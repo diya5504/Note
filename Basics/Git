@@ -1,0 +1,358 @@
+22-08-2024
+
+
+
+Git:
+
+Version Control Systems:
+
+---> Git is OpenSource and Version controal System.  it is used to store taxe based files.. track the who made changes ..which is store, moniter
+and trak versions of text based files or Dire..
+
+Version control system is Client based Architecher..
+
+Repository:
+
+----> Repository is nothing but a Folder. wich is allow you to store specific fies..
+
+Server:
+
+-----> collection of repo.
+
+Client:
+
+-----> which is comminucate with server..
+
+
+Trminolazy:
+
+Checkout: checkout is the process ..where you take the file perticular repo of server..make it visable inside your local laptop..
+
+
+MetaData:
+-----> Who made the changes what was the chanes has made..
+
+
+
+------------------------------------------------------------------------------------GitHub-----------------------------------------------------------------------------
+
+
+How do I speak GitHub?
+There are some common terms teams will need to understand when using GitHub. They are:
+
+Git — a tool that allows developers and others to use version control
+
+GitHub — one of many web interfaces for using Git
+
+Organization (org) — a grouping mechanism allowing teams to collaborate across many projects at once
+
+Repository (repo) — a folder in which all files and their version histories are stored
+
+Branch — a version of the repo that allows work without affecting other branches. Repos may have many branches for different possible changes being tested or considered, along with a default branch that serves as the source of truth.
+
+Fork — a new repository that inherits from a parent “upstream” repo. It is used to suggest changes to an “upstream” public repo by someone who doesn’t have access to edit in the repo’s home org.
+Markdown (.md) — a way to write content that converts plain text to formatted text.
+
+Commit Changes — a saved record of a change made to a file within the repo.
+
+Pull Request (PR) — a request for changes made to a branch to be pulled into another branch. Allows multiple users to see, discuss and review work being suggested.
+
+Merge — after a pull request is approved, the commit will be pulled in (or merged) from one branch to another and then, deployed on the live site
+Issues — allow users to report issues or bugs and track progress of assigning the fix for the issues.
+
+Federalist — a platform that securely deploys a website from a GitHub repository in minutes and lets users preview proposed and published changes.
+
+Projects — allows you to use GitHub for project management and tracking a set of issues, either for a specific repo or an entire org
+
+Wiki — a section of a repo made for hosting documentation. Documentation may be in the repo’s README files instead.
+............................................................................................................................................................
+GitWorkFlow.
+--------------
+
+GitClone: Gitclone is used to downlaodor copy from remote repo to lical repo/..
+
+
+Git init --> it convert normal repo to git repo. and it intilize normal or git repo.
+
+Git Push : gitpush is used to change the local repo to remote repo..
+
+Git Pull : is used to change the remote repo to local repo.
+
+MetaData : is nothing but who made the changes ,why made the changes when made the changes.
+
+
+Branch:
+-------
+
+Git WorkFlow:
+
+Gitinit    gitclone   (add,commit)  gitpush
+
+git pull   Branch 
+
+
+.......................................................................................................
+s
+ssh-keygen -t rsa -b 4096 -C "quantumcloudtechie@gmail.com"
+
+		go to c drive 
+		
+		go to users
+		
+		go to user name (your user name)
+		
+		go inside .ssh folder
+
+		open idrsa.pub   or    1kb file in note pad  , copy it
+
+		now go to your git hub acct ------>  go to settings =====> go to ssh and gpg keys
+
+hers add new ssh key ,, provide any name and add the key and save
+
+
+ 
+  
+git config --global user.name "sachin-rma-02"
+  
+git config --global user.email "quantumcloudtechie@gmail.com"
+
+git config --list
+
+adding your destination repo
+--------------------------
+git init
+
+git remote add origin https://github.com/sachin-ram-02/facebook.git
+
+$ git remote -v
+origin  https://github.com/mamidala-venkateswararao-au26/GitForDevops.git (fetch)
+origin  https://github.com/mamidala-venkateswararao-au26/GitForDevops.git (push)
+
+git remote -v
+
+git clone https://github.com/sachin-ram-02/facebook.git
+
+workflow
+-----------
+cd to that folder
+
+make some changes
+
+git status
+
+git add .  or file name
+
+git status
+
+git commit -m "messages"
+
+git status
+
+git push
+
+Git Log:
+--------
+
+git log is used to give the information about the how many commits you have done..
+
+git log
+
+git log --oneline
+git log -2       --> it will give latest 2 commits
+
+git show commit id
+
+git pull:
+--------
+-> git pull is used to bring the changes to remote to local.
+
+git pull
+Git fetch:
+-------
+git fetch is used to used to bring the change remote repo to local repo but it will not update in the local repo .. and if you want to 
+use git merge.
+
+
+
+git checkout commit id
+
+git checkout main
+
+
+git switch --detach fc0d072
+
+git switch branchname
+
+
+git branch
+
+check all the branches:
+git branch -a
+...............................................................................
+27-08-2024
+
+How to check commit id's..
+--------------------------
+git log --oneline  (it is use to display the commit id's at single line)
+
+$ git log --oneline
+d6d498d (HEAD -> main, origin/main, origin/HEAD) 2nd time changed
+e5e86b3 sample
+2a90b31 (dev) Initial commit
+
+---->  syntax - git checkout commit id
+
+This command is used to checkout the perticuler commit id 
+
+Version:
+Version is nothing but backup of the files..
+
+
+HEAD/ how git maintain the backup
+--------------------------------
+--> HEAD is a pointer it always shows the latest commit..
+-->example:
+
+$ git log --oneline
+d6d498d (HEAD -> main, origin/main, origin/HEAD) 2nd time changed
+e5e86b3 sample
+2a90b31 (dev) Initial commit
+ 
+
+
+Both are same:
+---> git switch dev   -}  both are used to switch the branch and working same.
+--> git checkout dev  -}
+
+How to create new branch:
+------------------------
+
+---->git branch dev
+
+Syntax: git branch branchname
+
+after creating a new branch how to do push local to github repo?
+---->git push --set-upstream origin dev
+
+
+How to switch to perticular commit id>.
+-------------------------------------
+-->git checkout commitid
+-->git switch --detach commit id
+
+example:
+-------------
+$ git log --oneline
+e5e86b3 (HEAD) sample
+2a90b31 Initial commit
+
+WONDER@DESKTOP-KNMBA12 MINGW64 ~/Desktop/Git/GitForDevops ((e5e86b3...))
+$ git switch --detach 2a90b31
+Previous HEAD position was e5e86b3 sample
+HEAD is now at 2a90b31 Initial commit
+
+WONDER@DESKTOP-KNMBA12 MINGW64 ~/Desktop/Git/GitForDevops ((2a90b31...))
+$ git log --oneline
+2a90b31 (HEAD) Initial commit
+
+-----------------
+GitMerge:
+---------
+
+Git merage is used to merge to the child branchh to main branch
+
+
+syntx:  step1: switch to Destination branch   ---> git checkout main
+        step2: git merge Dev
+
+
+GitRebase:
+----------
+both are use to combain to chaild to main branch.
+
+
+
+email github:
+------------
+pull request
+change request
+merge request
+
+git addimin --->review
+            ---> no issue then merge
+
+
+
+
+
+
+
+
+
+
+
+  cd Git
+  537  git clone https://github.com/mamidala-venkateswararao-au26/GitForDevops.git
+  538  git branch
+  539  git checkout master
+  540  git log --oneline
+  541  git checkout efcddee
+  542  git log --oneline
+  543  git checout master
+  544  git checkout master
+  545  git log --oneline
+  546  ls
+  547  cd GitForDevops/
+  548  git branches
+  549  git branch
+  550  git checkout dev
+  551  git branch
+  552  git checkout branch dev
+  553  git add branch dev
+  554  git branch --help
+  555  git branch dev
+  556  git branch
+  557  mkdir 123
+  558  git add .
+  559  git commit -m "sample"
+  560  git push
+  561  vim 123/sample.txt
+  562  git add .
+  563  git commit-m"sample2"
+  564  git commit -m "sample"
+  565  git push
+  566  git log --oneline
+  567  vim 123/sample.txt
+  568  git add
+  569  vim 123/sample.txt
+  570  git status
+  571  git add .
+  572  git commit -m "2nd time changed"
+  573  git push
+  574  git log --online
+  575  git log --oneline
+  576  git checkout dev
+  577  ls
+  578  touch file1txt
+  579  vi file1txt
+  580  git status
+  581  git add .
+  582  git status
+  583  git commit -m "changingFiles"
+  584  git push
+  585  git push --set-upstream origin dev
+  586  git log --oneline
+  587  git checkout main
+  588  git log --oneline
+  589  git checkout e5e86b3
+  590  git log --oneline
+  591  git switch --detach 2a90b31
+  592  git log --oneline
+  593  git checkout main
+....................................................................................................................
+|Git Merge,Git Rebase,Git stash,Git Squash CherryPick
+
+
+
+
+.....................................................................................................................
