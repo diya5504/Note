@@ -1,0 +1,141 @@
+List of general purpose commands for Ansible management:
+
+Installation
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install ansible
+ansible --version
+Inventory
+Example of Inventory file
+
+[mysql]
+10.0.0.13 = Env=live EcType=mysql EcName=live-mysql-0-b Az=a Nr=0
+[nginx]
+10.0.0.17 = Env=live EcType=nginx EcName=live-nginx-0-b Az=a Nr=0
+
+[live:children]
+mysql
+nginx
+Check Connection
+$ ansible -m ping <host>
+Ad-Hoc Commands
+Parallelism Shell Commands
+ssh-agnet bash $ ssh-add ~/.ssh/id_rsa
+Reboot remove server using anisble
+
+ansible mysql -a "/sbin/reboot" -f 20
+Run ansible using specific user
+
+ansible nginx -a "/usr/bin/foo" -u anmolnagpal
+Run ansible using specific user
+
+ansible nginx -a "/usr/bin/foo" -u anmolnagpal
+File Transfer
+Transfer file to many servers
+
+ansible nginx -m copy -a "src=/etc/anmol.txt dest=/tmp/anmol.txt"
+Transfer file with specific ownership & permission
+
+ansible nginx -m file -a "src=/etc/anmol.txt dest=/tmp/anmol.txt mode=600"
+ansible nginx -m file -a "src=/etc/anmol.txt dest=/tmp/anmol.txt mode=600 owner=anmol gorup=anmol"
+Create Directories
+
+ansible nginx -m file -a "dest=/tmp/clouddrove mode=755 owner=anmol gorup=anmol stage=directory"
+Delete Directories
+
+ansible nginx -m file -a "dest=/tmp/clouddrove state=absent"
+Manage Packages
+Ensure package is installed, but doesn't get updated
+
+ansible mysql -m apt -a "name=python state=present"
+Ensure package is installed to a specific version
+
+ansible mysql -m apt -a "name=python-2.6 state=present"
+Ensure package is installed with latest version
+
+ansible mysql -m apt -a "name=python state=latest"
+Ensure package is installed is not installed
+
+ansible mysql -m apt -a "name=python state=absent"
+Manage Services
+Ensure a service is started on all nginx servers
+
+ansible nginx -m service -a "name=nginx state=started"
+Restart service on all nginx servers
+
+ansible nginx -m service -a "name=nginx state=restarted"
+Ensure a service is stopped
+
+ansible nginx -m service -a "name=nginx state=stopped"
+Playbooks
+Playbook: Update system (Debian based)
+- hosts: local
+  tasks:
+    - name: Update system
+      apt:
+        update_cache: yes
+        upgrade: yes
+    - name: Remove dependencies
+      apt:
+        autoremove: yes
+    - name: Remove useless packages from the cache
+      apt:
+        autoclean: yes
+Playbook: List Kubernetes Cluster Nodes
+- name: Kubernetes Cluster Health Check
+  hosts: k8s
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Checking the Kubernetes Nodes
+      shell:
+        kubectl get nodes 
+      register: results
+
+    - name: Print the Kubernetes Nodes
+      debug:
+        msg: "{{ results.stdout.split('\n') }}"
+Sample Playbooks
+- name: dpkg --configure -a
+  shell: dpkg --configure -a
+  tags:
+    - dpkg
+
+- name: install system pakcages and utils
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 5400
+    allow_unauthenticated: yes
+  with_items:
+   - ntp
+   - git
+   - git-core
+   - htop
+   - vim
+   - curl
+   - unzip
+   - jq
+   - python-setuptools
+   - python-dev
+   - build-essential
+  tags:
+    - packages
+Writing Playbooks
+Create a playbook
+
+- hosts: live-node-01
+  become: true
+  roles:
+    - { role: common,    tags: [ 'common'    ] }
+    - { role: docker,    tags: [ 'docker'    ] }
+    - { role: jenkins,   tags: [ 'agent'     ] }
+    - { role: selenoid,  tags: [ 'selenoid'  ] }
+Ansible Vault
+Using the argument “ — ask-vault-pass”
+
+ansible-playbook users.yml --ask-vault-pass
+Using the argument “ — vault-password-file”
+
+ansible-playbook users.yml --vault-password-file /anmol/.ansible/vault-passwd
